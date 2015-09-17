@@ -14,21 +14,23 @@ var twit = new Twit({
 var stream = twit.stream("user", { screen_name: twitterKeys.toFollow });
 
 stream.on("tweet", function (tweet) {
-	if(tweet.text.search("starwars") !== -1 || 
-		tweet.text.search("star wars") !== -1 ||
-		tweet.text.search("sw") !== -1 ||
-		tweet.text.search("the force awakens") !== -1 ||
-		tweet.text.search("theforceawakens") !== -1 ||
-		tweet.text.search("tickets") !== -1 ||
-		tweet.text.search("imax") !== -1 ||
-		tweet.text.search("midnight") !== -1 ||
-		tweet.text.search("12") !== -1 ||
-		tweet.text.search("purchase") !== -1){
+	var tweet = tweet.text.toLowerCase();
+	
+	if(tweet.indexOf("starwars") !== -1 || 
+		tweet.indexOf("star wars") !== -1 ||
+		tweet.indexOf("sw") !== -1 ||
+		tweet.indexOf("the force awakens") !== -1 ||
+		tweet.indexOf("theforceawakens") !== -1 ||
+		tweet.indexOf("tickets") !== -1 ||
+		tweet.indexOf("imax") !== -1 ||
+		tweet.indexOf("midnight") !== -1 ||
+		tweet.indexOf("12") !== -1 ||
+		tweet.indexOf("purchase") !== -1){
 
 		client.messages.create({
 			to: twillioKeys.myNum,  
 			from: twillioKeys.myTwillioNum,
-			body: tweet.text    
+			body: tweet   
 		},
 		function(err, message) { 
 			  console.log(err); 
