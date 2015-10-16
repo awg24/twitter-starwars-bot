@@ -11,10 +11,11 @@ var twit = new Twit({
   "access_token_secret": twitterKeys.access_token_secret
 });
 
-var stream = twit.stream("user", { screen_name: twitterKeys.toFollow });
+var stream = twit.stream("user", { screen_name: "Mr_YodaBot"});
 
 stream.on("tweet", function (tweet) {
 	var tweetCased = tweet.text.toLowerCase();
+	console.log(tweet.text);
 
 	if(tweetCased.indexOf("starwars") !== -1 || 
 		tweetCased.indexOf("star wars") !== -1 ||
